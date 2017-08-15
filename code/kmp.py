@@ -42,10 +42,31 @@ def brd(pat):
     return nxt
 
 
+def sbrd(pat):
+    m = len(pat)
+    nxt = (m+1)*[-1] 
+    if m==1 or (m>0 and pat[0]!=pat[1]):
+        nxt[1] = 0
+    i = 1
+    j = 0
+    while i+j < m:
+        while i+j<m and pat[i+j]==pat[j]:
+            j += 1
+            if i+j==m or pat[j]!=pat[i+j]:
+                nxt[i+j] = j
+            else:
+                nxt[i+j] = nxt[j]
+        if j==0 and pat[0]!=pat[i+1]:
+            nxt[i+1] = 0
+        i = i + j - nxt[j]
+        j = max (0, nxt[j])
+    return nxt
+
+
 def kmp(txt, pat):
     n = len(txt)
     m = len(pat)
-    nxt = brd(pat)
+    nxt = sbrd(pat)
     print "nxt=", nxt
     occ = []
     i = 0
@@ -62,7 +83,7 @@ def kmp(txt, pat):
             occ.append(i)
         print "skipping ", max(1, (j-nxt[j]))
         i += max(1, (j-nxt[j])) 
-        j = nxt[j]
+        j = max(0, nxt[j])
     return occ
 
 def main():
