@@ -67,21 +67,21 @@ def kmp(txt, pat):
     n = len(txt)
     m = len(pat)
     nxt = sbrd(pat)
-    print "nxt=", nxt
+    print ("nxt=", nxt)
     occ = []
     i = 0
     j = 0
     while i <= n-m:
         while j<m and txt[i+j]==pat[j]:
             j += 1
-        print txt
-        print "%s%s%s"%(i*" ",j*"=","!" if j<m else "")
-        print "%s%s"%(i*" ",pat)
-        print "%s%s"%(i*" ",nxt[j]*"-")
+        print (txt)
+        print ("%s%s%s"%(i*" ",j*"=","!" if j<m else ""))
+        print ("%s%s"%(i*" ",pat))
+        print ("%s%s"%(i*" ",nxt[j]*"-"))
         print
         if j==m:
             occ.append(i)
-        print "skipping ", max(1, (j-nxt[j]))
+        print ("skipping ", max(1, (j-nxt[j])))
         i += max(1, (j-nxt[j])) 
         j = max(0, nxt[j])
     return occ
@@ -90,7 +90,7 @@ def main():
     txt = "rabracadrabra"
     pat = "rabra"
     occ = kmp(txt, pat)
-    print occ
+    print (occ)
 
 if __name__ == "__main__":
     main()
