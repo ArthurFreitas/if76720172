@@ -17,15 +17,16 @@ def boyermoore(txt, pat, ab):
         j = m-1
         while j>=0 and txt[i+j] == pat[j]:
             j -= 1
-        print txt
-        print "%s%s%s"%((i+j)*" " if j>=0 else i*" " , "!" if j>=0 else "",(m-j-1)*"=")
-        print "%s%s"%(i*" ",pat)
-        print
+        #print (txt)
+        #print ("%s%s%s"%((i+j)*" " if j>=0 else i*" " , "!" if j>=0 else "",(m-j-1)*"="))
+        #print ("%s%s"%(i*" ",pat))
+        #print
         if j<0:
             occ.append(i)
             i += 1
         else:
-            i += max(1, j-bc[ab.index(txt[i+j])]) 
+            i += max(1, j-bc[ab.index(txt[i+j])])
+        #print("Iterating")
     return occ
 
 def main():
@@ -33,7 +34,7 @@ def main():
     pat = "rabra"
     txt = "rabracadrabra"
     occ = boyermoore(txt, pat, ab)
-    print occ
+    print (occ)
 
     
 
